@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 @export var speed = 130
+@export var Coyote_Time : float = 0.1
 @onready var sprite = $animation_of_character_distorted
 var jump_velocity = -300
+var Jump_Available : bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
@@ -17,13 +19,19 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
-	
 	if not is_on_floor():
+		if Jump_Available:
+			get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
 		velocity.y += gravity * delta
+	else:
+		Jump_Available = true
+		
+		
 	
 		
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and Jump_Available:
 		velocity.y = jump_velocity
+		Jump_Available = false
 		
 	
 	
@@ -39,6 +47,6 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	move_and_slide()
-
-	
+func Coyote_Timeout():
+	Jump_Available = false
 	

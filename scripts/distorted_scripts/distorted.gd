@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
+@export var Jump_Buffer_Time: float = 0.1
 @export var speed = 130
 @export var Coyote_Time : float = 0.1
 @onready var sprite = $animation_of_character_distorted
+
+
 var jump_velocity = -300
+var Jump_Buffer:bool = false
 var Jump_Available : bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -16,7 +20,7 @@ func _input(event: InputEvent) -> void:
 		PositionTracking.player_position = $".".position
 		get_tree().change_scene_to_file("res://scenes/first_normal_scene/first_location_normal.tscn")
 		
-
+		
 func _physics_process(delta):
 	var direction = Input.get_axis("left","right")
 	if not is_on_floor():
@@ -25,17 +29,17 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	else:
 		Jump_Available = true
-		
-		
+		if Jump_Buffer:
+			Jump()
+			Jump_Buffer = false
 	
+	if Input.is_action_just_pressed("jump"):
+		if Jump_Available:
+			Jump()
+		else:
+			Jump_Buffer = true
+			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
 		
-	if Input.is_action_just_pressed("jump") and Jump_Available:
-		velocity.y = jump_velocity
-		Jump_Available = false
-		
-	
-	
-	
 	if direction > 0:
 		sprite.flip_h = false
 	elif direction < 0:
@@ -47,6 +51,14 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	move_and_slide()
+		
 func Coyote_Timeout():
 	Jump_Available = false
+	
+func Jump():
+	velocity.y = jump_velocity
+	Jump_Available = false
+
+func on_jump_buffer_timeout():
+	Jump_Buffer = false
 	

@@ -202,6 +202,12 @@ shape = SubResource("CapsuleShape2D_mcrfx")
 position = Vector2(39, -6)
 sprite_frames = SubResource("SpriteFrames_78res")
 
+[node name="Area2D" type="Area2D" parent="first_distorted_character"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first_distorted_character/Area2D"]
+position = Vector2(38, -4)
+shape = SubResource("CapsuleShape2D_mcrfx")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_kcmub")
 format = 2

@@ -49,6 +49,8 @@ func _physics_process(delta):
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+
+
 		
 	move_and_slide()
 		
@@ -61,4 +63,3 @@ func Jump():
 
 func on_jump_buffer_timeout():
 	Jump_Buffer = false
-	

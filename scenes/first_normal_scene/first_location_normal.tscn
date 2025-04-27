@@ -354,14 +354,20 @@ animation = &"idle_normal"
 autoplay = "idle_normal"
 frame_progress = 0.349622
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
-position = Vector2(25, -20)
-shape = SubResource("CapsuleShape2D_rivot")
-
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
 zoom = Vector2(4, 4)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Area2D" type="Area2D" parent="first_normal_character"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character/Area2D"]
+position = Vector2(25, -20)
+shape = SubResource("CapsuleShape2D_rivot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
+position = Vector2(25, -20)
+shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0bqt3")

@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=4 uid="uid://csv1usc0pfxpe"]
 
 [ext_resource type="Script" uid="uid://d4eukt31o7two" path="res://scripts/distorted_scripts/distorted.gd" id="1_mcrfx"]
-[ext_resource type="Texture2D" uid="uid://btspb3wry576r" path="res://sprites/character/past/GG-past-sketch-01-export.png" id="1_yomvr"]
+[ext_resource type="Texture2D" uid="uid://csdxgs4o1xay8" path="res://sprites/character/past/1111.png" id="2_78res"]
 [ext_resource type="Texture2D" uid="uid://wfjn5d0gwud" path="res://tilemap/normal/world_tileset.png" id="2_mcrfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mcrfx"]
-radius = 6.0
-height = 34.0
+radius = 7.0
+height = 40.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_78res"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wssrd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_yomvr")
+"texture": ExtResource("2_78res")
 }],
 "loop": true,
 "name": &"default",
@@ -195,27 +195,30 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="first_distorted_character"]
-position = Vector2(38, -4)
+position = Vector2(-39, -4)
 shape = SubResource("CapsuleShape2D_mcrfx")
 
 [node name="animation_of_character_distorted" type="AnimatedSprite2D" parent="first_distorted_character"]
-position = Vector2(39, -6)
-sprite_frames = SubResource("SpriteFrames_78res")
+position = Vector2(-40, -3)
+sprite_frames = SubResource("SpriteFrames_wssrd")
 
-[node name="Area2D" type="Area2D" parent="first_distorted_character"]
+[node name="Area2D_distorted" type="Area2D" parent="first_distorted_character"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="first_distorted_character/Area2D"]
-position = Vector2(38, -4)
+[node name="area_collision_distorted" type="CollisionShape2D" parent="first_distorted_character/Area2D_distorted"]
+position = Vector2(-39, -4)
 shape = SubResource("CapsuleShape2D_mcrfx")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["tile"]]
 tile_set = SubResource("TileSet_kcmub")
 format = 2
 
-[node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap" groups=["tile"]]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD8/wEAAAAHAAAAAAD9/wEAAAAHAAAAAAD+/wEAAAAHAAAAAAD//wEAAAAHAAAAAAAAAAEAAAAHAAAAAAABAAEAAAAHAAAAAAACAAEAAAAHAAAAAAADAAEAAAAHAAAAAAAEAAEAAAAHAAAAAAAFAAEAAAAHAAAAAAAGAAEAAAAHAAAAAAAHAAEAAAAHAAAAAAD7/wIAAAAHAAAAAAD8/wIAAAAHAAAAAAD9/wIAAAAHAAAAAAD+/wIAAAAHAAAAAAD//wIAAAAHAAAAAAAAAAIAAAAHAAAAAAABAAIAAAAHAAAAAAACAAIAAAAHAAAAAAADAAIAAAAHAAAAAAAEAAIAAAAHAAAAAAAFAAIAAAAHAAAAAAAGAAIAAAAHAAAAAAAHAAIAAAAHAAAAAAAIAAIAAAAHAAAAAAAJAAIAAAAHAAAAAAD7/wEAAAAHAAAAAAAIAAEAAAAHAAAAAAAJAAEAAAAHAAAAAAD6/wEAAAAHAAAAAAD6/wAAAAAHAAAAAAD6////AAAHAAAAAAD6//7/AAAHAAAAAAD6//3/AAAHAAAAAAD6//z/AAAHAAAAAAD6//v/AAAHAAAAAAAJAAAAAAAHAAAAAAAJAP//AAAHAAAAAAAJAP7/AAAHAAAAAAAJAP3/AAAHAAAAAAAJAPz/AAAHAAAAAAD6/wIAAAAHAAAAAAAJAPv/AAAHAAAAAAADAAAAAAAHAAAAAAAEAAAAAAAHAAAAAAAEAP//AAAHAAAAAAAFAP//AAAHAAAAAAAFAP7/AAAHAAAAAAAGAP7/AAAHAAAAAAAHAP7/AAAHAAAAAAAHAP3/AAAHAAAAAAAIAP3/AAAHAAAAAAAGAP//AAAHAAAAAAAHAP//AAAHAAAAAAAIAP//AAAHAAAAAAAIAP7/AAAHAAAAAAAIAAAAAAAHAAAAAAAHAAAAAAAHAAAAAAAGAAAAAAAHAAAAAAAFAAAAAAAHAAAAAAA=")
 tile_set = SubResource("TileSet_kcmub")
 
-[node name="_TileMapLayer_48927" type="TileMapLayer" parent="TileMap"]
+[node name="_TileMapLayer_48927" type="TileMapLayer" parent="TileMap" groups=["tile"]]
 tile_set = SubResource("TileSet_kcmub")
+
+[connection signal="area_entered" from="first_distorted_character/Area2D_distorted" to="first_distorted_character" method="_on_area_2d_distorted_area_entered"]
+[connection signal="body_entered" from="first_distorted_character/Area2D_distorted" to="first_distorted_character" method="_on_area_2d_distorted_body_entered"]

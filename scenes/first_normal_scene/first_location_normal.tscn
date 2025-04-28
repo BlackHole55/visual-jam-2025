@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://bh0qov0xo5tfn"]
+[gd_scene load_steps=45 format=4 uid="uid://bh0qov0xo5tfn"]
 
 [ext_resource type="Script" uid="uid://bfe56ijkdi17x" path="res://scripts/normal_scripts/normal.gd" id="1_hubyd"]
-[ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/Idle-animation-sprite-sheet.png" id="1_knt4i"]
+[ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/idle/Idle-animation-sprite-sheet.png" id="1_knt4i"]
 [ext_resource type="Texture2D" uid="uid://wfjn5d0gwud" path="res://tilemap/normal/world_tileset.png" id="2_hubyd"]
+[ext_resource type="Texture2D" uid="uid://dfnfkk7xn1v5c" path="res://sprites/character/normal/running/running-animation-sprite-sheet-1.1v.png" id="3_e2ko6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ko6"]
 atlas = ExtResource("1_knt4i")
@@ -96,6 +97,58 @@ region = Rect2(1344, 0, 64, 64)
 atlas = ExtResource("1_knt4i")
 region = Rect2(1408, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsbj7"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rivot"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdums"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bqt3"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a053"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g11qc"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88luk"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqvql"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fd13"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n61yh"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_725hy"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqka6"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6xo7"]
+atlas = ExtResource("3_e2ko6")
+region = Rect2(768, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsbj7"]
 animations = [{
 "frames": [{
@@ -170,6 +223,50 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_normal",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsbj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rivot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdums")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bqt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a053")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g11qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88luk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqvql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fd13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n61yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_725hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqka6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6xo7")
+}],
+"loop": true,
+"name": &"player_move",
 "speed": 12.0
 }]
 
@@ -348,28 +445,29 @@ sources/0 = SubResource("TileSetAtlasSource_e2ko6")
 script = ExtResource("1_hubyd")
 
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
-position = Vector2(26, -21)
+position = Vector2(80, -21)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
 animation = &"idle_normal"
 autoplay = "idle_normal"
-frame_progress = 0.349622
+frame_progress = 0.989724
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
 zoom = Vector2(4, 4)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Area2D" type="Area2D" parent="first_normal_character"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character/Area2D"]
-position = Vector2(25, -20)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
+position = Vector2(79, -20)
 shape = SubResource("CapsuleShape2D_rivot")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
-position = Vector2(25, -20)
+[node name="Area2D_normal" type="Area2D" parent="first_normal_character"]
+
+[node name="area_collision_normal" type="CollisionShape2D" parent="first_normal_character/Area2D_normal"]
+position = Vector2(79, -20)
 shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(1, 1)
 tile_set = SubResource("TileSet_0bqt3")
 format = 2
 
@@ -378,5 +476,12 @@ tile_set = SubResource("TileSet_0bqt3")
 
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAD+/wAAAAACAAkAAAD9/wAAAAACAAkAAAD8/wAAAAACAAkAAAD8////AAACAAkAAAD8//7/AAACAAkAAAD9//7/AAACAAkAAAD9//3/AAACAAkAAAD9//z/AAACAAkAAAD+//z/AAACAAkAAAD+//3/AAACAAkAAAD+//7/AAACAAkAAAD+////AAACAAkAAAD9////AAACAAkAAAD/////AAACAAkAAAD///7/AAACAAkAAAD///3/AAACAAkAAAD///z/AAACAAkAAAAGAPz/AAACAAkAAAAGAP3/AAACAAkAAAAGAP7/AAACAAkAAAAGAP//AAACAAkAAAAGAAAAAAACAAkAAAAHAAAAAAACAAkAAAAIAAAAAAACAAkAAAAIAP//AAACAAkAAAAHAP//AAACAAkAAAAHAP7/AAACAAkAAAAHAP3/AAACAAkAAAAHAPz/AAACAAkAAAAIAPz/AAACAAkAAAAIAP3/AAACAAkAAAAIAP7/AAACAAkAAAD//wEAAAACAAkAAAD+/wEAAAACAAkAAAD9/wEAAAACAAkAAAD8/wEAAAACAAkAAAA=")
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAD+/wAAAAACAAkAAAD9/wAAAAACAAkAAAD8/wAAAAACAAkAAAD8////AAACAAkAAAD8//7/AAACAAkAAAD9//7/AAACAAkAAAD9//3/AAACAAkAAAD9//z/AAACAAkAAAD+//z/AAACAAkAAAD+//3/AAACAAkAAAD+//7/AAACAAkAAAD+////AAACAAkAAAD9////AAACAAkAAAD/////AAACAAkAAAD///7/AAACAAkAAAD///3/AAACAAkAAAD///z/AAACAAkAAAAGAAAAAAACAAkAAAAHAAAAAAACAAkAAAAIAAAAAAACAAkAAAD//wEAAAACAAkAAAD+/wEAAAACAAkAAAD9/wEAAAACAAkAAAD8/wEAAAACAAkAAAABAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAUAP//AAAAAAAAAAAUAP7/AAAAAAAAAAAUAP3/AAAAAAAAAAAUAPz/AAAAAAAAAAAUAPv/AAAAAAAAAAAUAPr/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_0bqt3")
+
+[node name="Layer2" type="TileMapLayer" parent="TileMap" groups=["pickable_items"]]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAKAP//AAAAAAgAAAA=")
+tile_set = SubResource("TileSet_0bqt3")
+
+[connection signal="area_entered" from="first_normal_character/Area2D_normal" to="first_normal_character" method="_on_area_2d_normal_area_entered"]

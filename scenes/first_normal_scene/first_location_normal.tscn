@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=4 uid="uid://bh0qov0xo5tfn"]
+[gd_scene load_steps=46 format=4 uid="uid://bh0qov0xo5tfn"]
 
 [ext_resource type="Script" uid="uid://bfe56ijkdi17x" path="res://scripts/normal_scripts/normal.gd" id="1_hubyd"]
 [ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/idle/Idle-animation-sprite-sheet.png" id="1_knt4i"]
 [ext_resource type="Texture2D" uid="uid://wfjn5d0gwud" path="res://tilemap/normal/world_tileset.png" id="2_hubyd"]
 [ext_resource type="Texture2D" uid="uid://dfnfkk7xn1v5c" path="res://sprites/character/normal/running/running-animation-sprite-sheet-1.1v.png" id="3_e2ko6"]
+[ext_resource type="Texture2D" uid="uid://ddtwb7s0nggg4" path="res://sprites/character/normal/jump/jumping-sprite.png" id="3_uksxc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ko6"]
 atlas = ExtResource("1_knt4i")
@@ -227,6 +228,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_uksxc")
+}],
+"loop": true,
+"name": &"player_jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bsbj7")
 }, {
 "duration": 1.0,
@@ -445,25 +454,25 @@ sources/0 = SubResource("TileSetAtlasSource_e2ko6")
 script = ExtResource("1_hubyd")
 
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
-position = Vector2(80, -21)
+position = Vector2(13, -19)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
 animation = &"idle_normal"
 autoplay = "idle_normal"
-frame_progress = 0.989724
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
-zoom = Vector2(4, 4)
+position = Vector2(1, 0)
+zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
-position = Vector2(79, -20)
+position = Vector2(12, -18)
 shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="Area2D_normal" type="Area2D" parent="first_normal_character"]
 
 [node name="area_collision_normal" type="CollisionShape2D" parent="first_normal_character/Area2D_normal"]
-position = Vector2(79, -20)
+position = Vector2(12, -18)
 shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="TileMap" type="TileMap" parent="."]

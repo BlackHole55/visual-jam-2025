@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csdxgs4o1xay8"
-path="res://.godot/imported/1111.png-3caee52717fb4a0391d82cdc3d7d8e34.ctex"
+uid="uid://bgnt710s1finy"
+path="res://.godot/imported/past-idle-animation-Sheet.png-ef7b1dc3d37b884224a1fea5fab00dcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/character/past/1111.png"
-dest_files=["res://.godot/imported/1111.png-3caee52717fb4a0391d82cdc3d7d8e34.ctex"]
+source_file="res://sprites/character/past/idle/past-idle-animation-Sheet.png"
+dest_files=["res://.godot/imported/past-idle-animation-Sheet.png-ef7b1dc3d37b884224a1fea5fab00dcf.ctex"]
 
 [params]
 

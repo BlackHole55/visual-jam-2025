@@ -44,12 +44,16 @@ func _physics_process(delta):
 		if Jump_Available:
 			get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
 		velocity.y += gravity * delta
+
 	else:
 		Jump_Available = true
 		if Jump_Buffer:
 			Jump()
 			Jump_Buffer = false
-		
+	
+	
+	
+	
 	#Jump function, which tracks when the button was pressed
 	if Input.is_action_just_pressed("jump"):
 		if Jump_Available:
@@ -69,12 +73,21 @@ func _physics_process(delta):
 	#If direction has a value, it means player pressed move key
 	#so this function moves character in game
 	if direction:
-		sprite.animation = "player_move"
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-		sprite.animation = "idle_normal"
 		
+		
+	if not is_on_floor():
+		if velocity.y < 0:
+			sprite.animation = "player_jump"  
+		else:
+			sprite.animation = "player_jump"
+	else:
+		if direction:
+			sprite.animation = "player_move"  
+		else:
+			sprite.animation = "idle_normal" 
 	#last function, which glue everything together.
 	move_and_slide()
 func Coyote_Timeout():

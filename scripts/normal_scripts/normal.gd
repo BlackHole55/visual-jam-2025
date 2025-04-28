@@ -73,9 +73,11 @@ func _physics_process(delta):
 	#If direction has a value, it means player pressed move key
 	#so this function moves character in game
 	if direction:
+		sprite.animation = "player_move"
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+		sprite.animation = "idle_normal"
 		
 		
 	if not is_on_floor():

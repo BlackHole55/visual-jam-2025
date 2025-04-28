@@ -232,7 +232,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"player_jump",
-"speed": 12.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -454,25 +454,24 @@ sources/0 = SubResource("TileSetAtlasSource_e2ko6")
 script = ExtResource("1_hubyd")
 
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
-position = Vector2(13, -19)
+position = Vector2(80, -21)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
-animation = &"idle_normal"
+animation = &"player_jump"
 autoplay = "idle_normal"
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
-position = Vector2(1, 0)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="first_normal_character"]
-position = Vector2(12, -18)
+position = Vector2(79, -20)
 shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="Area2D_normal" type="Area2D" parent="first_normal_character"]
 
 [node name="area_collision_normal" type="CollisionShape2D" parent="first_normal_character/Area2D_normal"]
-position = Vector2(12, -18)
+position = Vector2(79, -20)
 shape = SubResource("CapsuleShape2D_rivot")
 
 [node name="TileMap" type="TileMap" parent="."]

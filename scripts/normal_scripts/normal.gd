@@ -84,7 +84,7 @@ func _physics_process(delta):
 		if velocity.y < 0:
 			sprite.animation = "player_jump"  
 		else:
-			sprite.animation = "player_jump"
+			sprite.animation = "player_fall"
 	else:
 		if direction:
 			sprite.animation = "player_move"  

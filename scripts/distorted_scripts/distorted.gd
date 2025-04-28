@@ -73,7 +73,17 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-
+	if not is_on_floor():
+		#if velocity.y < 0:
+			#sprite.animation = "player_jump"  
+		#else:
+			#sprite.animation = "player_fall"
+		pass
+	else:
+		if direction:
+			sprite.animation = "distorted_running"  
+		else:
+			sprite.animation = "distorted_idle" 
 	#last function, which glue everything together.
 	move_and_slide()
 	

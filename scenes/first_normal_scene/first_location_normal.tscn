@@ -153,6 +153,11 @@ region = Rect2(768, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsbj7"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"death_distorted",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e2ko6")
@@ -465,7 +470,7 @@ script = ExtResource("1_hubyd")
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
 position = Vector2(10, -21)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
-animation = &"idle_normal"
+animation = &"death_distorted"
 autoplay = "idle_normal"
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]

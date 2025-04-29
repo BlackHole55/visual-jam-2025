@@ -20,7 +20,7 @@ func _ready():
 	await get_tree().process_frame 
 	
 	if is_stuck():
-		position = SpawnPoint
+		Variables.is_Dead = true
 
 #switches the realms
 func _input(event: InputEvent) -> void:
@@ -34,58 +34,62 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_released("sprint"):
 		speed = 130
+	
+	if event.is_action_pressed("restart"):
+		Variables.is_Dead = false
+		position = SpawnPoint
 		
 func _physics_process(delta):
+	if not Variables.is_Dead:
 	
-	
-	#gets direction (either negative either positive number)
-	var direction = Input.get_axis("left","right")
-	#Check if character is on floor, else you can jump
-	#also has jump_buffer and coyote_time feature;
-	if not is_on_floor():
-		if Jump_Available:
-			get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
-		velocity.y += gravity * delta
-	else:
-		Jump_Available = true
-		if Jump_Buffer:
-			Jump()
-			Jump_Buffer = false
-	
-	#Jump function, which tracks when the button was pressed
-	if Input.is_action_just_pressed("jump"):
-		if Jump_Available:
-			Jump()
+		#gets direction (either negative either positive number)
+		var direction = Input.get_axis("left","right")
+		#Check if character is on floor, else you can jump
+		#also has jump_buffer and coyote_time feature;
+		if not is_on_floor():
+			if Jump_Available:
+				get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
+			velocity.y += gravity * delta
 		else:
-			Jump_Buffer = true
-			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
-	
-	#if direction is negative, it flips the character, so it looks to the left
-	if direction > 0:
-		sprite.flip_h = false
-	elif direction < 0:
-		sprite.flip_h = true
-	
-	#If direction has a value, it means player pressed move key
-	#so this function moves character in game
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	if not is_on_floor():
-		if velocity.y < 0:
-			sprite.animation = "distorted_jumping"  
-		else:
-			sprite.animation = "distorted_falling"
-		pass
-	else:
+			Jump_Available = true
+			if Jump_Buffer:
+				Jump()
+				Jump_Buffer = false
+		
+		#Jump function, which tracks when the button was pressed
+		if Input.is_action_just_pressed("jump"):
+			if Jump_Available:
+				Jump()
+			else:
+				Jump_Buffer = true
+				get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
+		
+		#if direction is negative, it flips the character, so it looks to the left
+		if direction > 0:
+			sprite.flip_h = false
+		elif direction < 0:
+			sprite.flip_h = true
+		
+		#If direction has a value, it means player pressed move key
+		#so this function moves character in game
 		if direction:
-			sprite.animation = "distorted_running"  
+			velocity.x = direction * speed
 		else:
-			sprite.animation = "distorted_idle" 
-	#last function, which glue everything together.
-	move_and_slide()
+			velocity.x = move_toward(velocity.x, 0, speed)
+
+		if not is_on_floor():
+			if velocity.y < 0:
+				sprite.animation = "distorted_jumping"  
+			else:
+				sprite.animation = "distorted_falling"
+			pass
+		else:
+			if direction:
+				sprite.animation = "distorted_running"  
+			else:
+				sprite.animation = "distorted_idle" 
+		#last function, which glue everything together.
+		move_and_slide()
 	
 func Coyote_Timeout():
 	Jump_Available = false

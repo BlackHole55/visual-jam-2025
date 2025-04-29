@@ -18,6 +18,8 @@ var SpawnPoint = Vector2.ZERO
 func _ready():
 	position = PositionTracking.player_position
 	
+
+	
 	await get_tree().process_frame 
 	
 	if is_stuck():

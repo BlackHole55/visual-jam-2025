@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://bh0qov0xo5tfn"]
+[gd_scene load_steps=69 format=4 uid="uid://bh0qov0xo5tfn"]
 
 [ext_resource type="Script" uid="uid://bfe56ijkdi17x" path="res://scripts/normal_scripts/normal.gd" id="1_hubyd"]
 [ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/idle/Idle-animation-sprite-sheet.png" id="1_knt4i"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bcwma61w7mkin" path="res://sprites/character/normal/death/normal_death.png" id="3_owu42"]
 [ext_resource type="Texture2D" uid="uid://bf0tungkcrnkr" path="res://sprites/character/normal/falling/64x64-falling-sprite.png" id="3_qygso"]
 [ext_resource type="Texture2D" uid="uid://ddtwb7s0nggg4" path="res://sprites/character/normal/jump/jumping-sprite.png" id="3_uksxc"]
+[ext_resource type="Texture2D" uid="uid://bnr7x6b72dk4e" path="res://sprites/GameOver/game-over-animation-normal.png" id="7_fm80h"]
+[ext_resource type="Script" uid="uid://b2llj0aj1eovg" path="res://scenes/first_normal_scene/game_over.gd" id="7_lk16t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ko6"]
 atlas = ExtResource("1_knt4i")
@@ -340,6 +342,98 @@ animations = [{
 radius = 6.0
 height = 38.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpsyx"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(0, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfji4"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(192, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhw8a"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(384, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp4yn"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(576, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjnsu"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(768, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn067"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(960, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lw8o"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(1152, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4dyc"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(1344, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4obir"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(1536, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc6pi"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(1728, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adjb5"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(1920, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agawe"]
+atlas = ExtResource("7_fm80h")
+region = Rect2(2112, 0, 192, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moph3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpsyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfji4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhw8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp4yn")
+}, {
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_wjnsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn067")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lw8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4dyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4obir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc6pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adjb5")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_agawe")
+}],
+"loop": true,
+"name": &"game_over_normal",
+"speed": 12.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2ko6"]
 texture = ExtResource("2_hubyd")
 0:0/0 = 0
@@ -513,10 +607,8 @@ script = ExtResource("1_hubyd")
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
 position = Vector2(10, -21)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
-animation = &"player_death"
+animation = &"idle_normal"
 autoplay = "idle_normal"
-frame = 5
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
 zoom = Vector2(3, 3)
@@ -532,6 +624,16 @@ shape = SubResource("CapsuleShape2D_rivot")
 [node name="area_collision_normal" type="CollisionShape2D" parent="first_normal_character/Area2D_normal"]
 position = Vector2(9, -21)
 shape = SubResource("CapsuleShape2D_rivot")
+
+[node name="GameOver" type="CanvasLayer" parent="first_normal_character"]
+script = ExtResource("7_lk16t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="first_normal_character/GameOver"]
+position = Vector2(18, -23)
+sprite_frames = SubResource("SpriteFrames_moph3")
+animation = &"game_over_normal"
+autoplay = "game_over_normal"
+frame_progress = 0.85997
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 1)

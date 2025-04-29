@@ -10,13 +10,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var Jump_Available : bool = true
 var Jump_Buffer:bool = false
 var SpawnPoint = Vector2.ZERO
-
 #Instantly replace player with global variable position (defaul zero vector, but after 
 #distortion input it replaces zero vector with coordinates on another dimension)
 #also checks if character after swap is in the wall, it changes position to spawnpoint!!
 func _ready():
 	position = PositionTracking.player_position
-	
 	await get_tree().process_frame 
 	if is_stuck():
 		sprite.animation = "player_death"

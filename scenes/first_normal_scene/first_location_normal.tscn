@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://bh0qov0xo5tfn"]
+[gd_scene load_steps=70 format=4 uid="uid://bh0qov0xo5tfn"]
 
 [ext_resource type="Script" uid="uid://bfe56ijkdi17x" path="res://scripts/normal_scripts/normal.gd" id="1_hubyd"]
 [ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/idle/Idle-animation-sprite-sheet.png" id="1_knt4i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddtwb7s0nggg4" path="res://sprites/character/normal/jump/jumping-sprite.png" id="3_uksxc"]
 [ext_resource type="Texture2D" uid="uid://bnr7x6b72dk4e" path="res://sprites/GameOver/game-over-animation-normal.png" id="7_fm80h"]
 [ext_resource type="Script" uid="uid://b2llj0aj1eovg" path="res://scenes/first_normal_scene/game_over.gd" id="7_lk16t"]
+[ext_resource type="Script" uid="uid://bw2d1mmjaplrl" path="res://scenes/first_normal_scene/ui.gd" id="10_uott6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ko6"]
 atlas = ExtResource("1_knt4i")
@@ -654,4 +655,14 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAAKAP//AAAAAAgAAAA=")
 tile_set = SubResource("TileSet_0bqt3")
 
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("10_uott6")
+
+[node name="GameTimer" type="Timer" parent="UI"]
+
+[node name="TimerLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="area_entered" from="first_normal_character/Area2D_normal" to="first_normal_character" method="_on_area_2d_normal_area_entered"]
+[connection signal="timeout" from="UI/GameTimer" to="UI" method="_on_game_timer_timeout"]

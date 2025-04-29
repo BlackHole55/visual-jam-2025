@@ -19,13 +19,15 @@ func _ready():
 	
 	await get_tree().process_frame 
 	if is_stuck():
+		sprite.animation = "player_death"
 		Variables.is_Dead = true
 
 #switches the realms
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("distortion"):
-		PositionTracking.player_position = $".".position
-		get_tree().change_scene_to_file("res://scenes/first_distorted_scene/first_location_distorted.tscn")
+	if not Variables.is_Dead:
+		if event.is_action_pressed("distortion"):
+			PositionTracking.player_position = $".".position
+			get_tree().change_scene_to_file("res://scenes/first_distorted_scene/first_location_distorted.tscn")
 	
 	#sprint
 	if event.is_action_pressed("sprint"):
@@ -37,7 +39,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		Variables.is_Dead = false
 		position = SpawnPoint
-
 
 func _physics_process(delta):
 	if not Variables.is_Dead:

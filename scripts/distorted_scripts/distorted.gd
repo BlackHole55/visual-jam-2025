@@ -10,6 +10,7 @@ var Jump_Buffer:bool = false
 var Jump_Available : bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var SpawnPoint = Vector2.ZERO
+
 #Instantly replace player with global variable position (defaul zero vector, but after 
 #distortion input it replaces zero vector with coordinates on another dimension)
 #also checks if character after swap is in the wall, it changes position to spawnpoint!!
@@ -20,13 +21,16 @@ func _ready():
 	await get_tree().process_frame 
 	
 	if is_stuck():
+		sprite.animation = "distorted_death"
 		Variables.is_Dead = true
+		
 
 #switches the realms
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("distortion"):
-		PositionTracking.player_position = $".".position
-		get_tree().change_scene_to_file("res://scenes/first_normal_scene/first_location_normal.tscn")
+	if not Variables.is_Dead:
+		if event.is_action_pressed("distortion"):
+			PositionTracking.player_position = $".".position
+			get_tree().change_scene_to_file("res://scenes/first_normal_scene/first_location_normal.tscn")
 	
 	#sprint
 	if event.is_action_pressed("sprint"):

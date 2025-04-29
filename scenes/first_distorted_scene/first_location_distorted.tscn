@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=4 uid="uid://csv1usc0pfxpe"]
+[gd_scene load_steps=41 format=4 uid="uid://csv1usc0pfxpe"]
 
 [ext_resource type="Script" uid="uid://d4eukt31o7two" path="res://scripts/distorted_scripts/distorted.gd" id="1_mcrfx"]
 [ext_resource type="Texture2D" uid="uid://bgnt710s1finy" path="res://sprites/character/past/idle/past-idle-animation-Sheet.png" id="2_78res"]
+[ext_resource type="Texture2D" uid="uid://1j4xrwsdwqmj" path="res://sprites/character/past/death/32x32-distorted_death.png" id="2_bqikv"]
 [ext_resource type="Texture2D" uid="uid://dpfpctaw5mui" path="res://sprites/character/past/falling/32x32-falling-sprite-export.png" id="2_kcmub"]
 [ext_resource type="Texture2D" uid="uid://wfjn5d0gwud" path="res://tilemap/normal/world_tileset.png" id="2_mcrfx"]
 [ext_resource type="Texture2D" uid="uid://cvbrqm5b6luhn" path="res://sprites/character/past/running/32x32-running-animation-Sheet.png" id="3_wssrd"]
@@ -10,6 +11,30 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mcrfx"]
 radius = 7.0
 height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nklw2"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsbky"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e18n"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv0r6"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6n0e"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2xs7"]
+atlas = ExtResource("2_bqikv")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kcmub"]
 atlas = ExtResource("2_78res")
@@ -105,6 +130,29 @@ region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wssrd"]
 animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nklw2")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nsbky")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_8e18n")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hv0r6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a6n0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2xs7")
+}],
+"loop": false,
+"name": &"distorted_death",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_kcmub")
@@ -383,7 +431,7 @@ shape = SubResource("CapsuleShape2D_mcrfx")
 [node name="animation_of_character_distorted" type="AnimatedSprite2D" parent="first_distorted_character"]
 position = Vector2(8, -19)
 sprite_frames = SubResource("SpriteFrames_wssrd")
-animation = &"distorted_falling"
+animation = &"distorted_death"
 autoplay = "distorted_idle"
 
 [node name="Area2D_distorted" type="Area2D" parent="first_distorted_character"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=47 format=4 uid="uid://bh0qov0xo5tfn"]
+[gd_scene load_steps=54 format=4 uid="uid://bh0qov0xo5tfn"]
 
 [ext_resource type="Script" uid="uid://bfe56ijkdi17x" path="res://scripts/normal_scripts/normal.gd" id="1_hubyd"]
 [ext_resource type="Texture2D" uid="uid://bkvspw7ngfjti" path="res://sprites/character/normal/idle/Idle-animation-sprite-sheet.png" id="1_knt4i"]
 [ext_resource type="Texture2D" uid="uid://wfjn5d0gwud" path="res://tilemap/normal/world_tileset.png" id="2_hubyd"]
 [ext_resource type="Texture2D" uid="uid://dfnfkk7xn1v5c" path="res://sprites/character/normal/running/running-animation-sprite-sheet-1.1v.png" id="3_e2ko6"]
+[ext_resource type="Texture2D" uid="uid://bcwma61w7mkin" path="res://sprites/character/normal/death/normal_death.png" id="3_owu42"]
 [ext_resource type="Texture2D" uid="uid://bf0tungkcrnkr" path="res://sprites/character/normal/falling/64x64-falling-sprite.png" id="3_qygso"]
 [ext_resource type="Texture2D" uid="uid://ddtwb7s0nggg4" path="res://sprites/character/normal/jump/jumping-sprite.png" id="3_uksxc"]
 
@@ -99,6 +100,30 @@ region = Rect2(1344, 0, 64, 64)
 atlas = ExtResource("1_knt4i")
 region = Rect2(1408, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbp4k"]
+atlas = ExtResource("3_owu42")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxude"]
+atlas = ExtResource("3_owu42")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3xxo"]
+atlas = ExtResource("3_owu42")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4uri"]
+atlas = ExtResource("3_owu42")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpjfu"]
+atlas = ExtResource("3_owu42")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r8ui"]
+atlas = ExtResource("3_owu42")
+region = Rect2(320, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsbj7"]
 atlas = ExtResource("3_e2ko6")
 region = Rect2(0, 0, 64, 64)
@@ -153,11 +178,6 @@ region = Rect2(768, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsbj7"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"death_distorted",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e2ko6")
@@ -231,6 +251,29 @@ animations = [{
 "loop": true,
 "name": &"idle_normal",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_gbp4k")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_xxude")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_c3xxo")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_q4uri")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_vpjfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r8ui")
+}],
+"loop": false,
+"name": &"player_death",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -470,8 +513,10 @@ script = ExtResource("1_hubyd")
 [node name="animation_of_character_normal" type="AnimatedSprite2D" parent="first_normal_character"]
 position = Vector2(10, -21)
 sprite_frames = SubResource("SpriteFrames_bsbj7")
-animation = &"death_distorted"
+animation = &"player_death"
 autoplay = "idle_normal"
+frame = 5
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="first_normal_character"]
 zoom = Vector2(3, 3)

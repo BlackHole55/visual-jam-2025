@@ -633,7 +633,7 @@ position = Vector2(18, -23)
 sprite_frames = SubResource("SpriteFrames_moph3")
 animation = &"game_over_normal"
 autoplay = "game_over_normal"
-frame_progress = 0.85997
+frame_progress = 0.572858
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 1)

@@ -487,7 +487,7 @@ shape = SubResource("CapsuleShape2D_rivot")
 position = Vector2(1, 1)
 tile_set = SubResource("TileSet_0bqt3")
 format = 2
-layer_0/tile_data = PackedInt32Array(-131060, 0, 4, -65524, 0, 5, -131076, 65536, 9, -65540, 65536, 9)
+layer_0/tile_data = PackedInt32Array(-131060, 0, 4, -65524, 0, 5, -131076, 65536, 9, -65540, 65536, 9, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -327666, 0, 0, -327667, 0, 0, -262131, 0, 0, -196595, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -196592, 0, 0, -262128, 0, 0, -262129, 0, 0, -327665, 0, 0, -262130, 0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
 tile_set = SubResource("TileSet_0bqt3")

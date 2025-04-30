@@ -9,12 +9,17 @@ var jump_velocity = -300
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var Jump_Available : bool = true
 var Jump_Buffer:bool = false
-var SpawnPoint = Vector2.ZERO
 #Instantly replace player with global variable position (defaul zero vector, but after 
 #distortion input it replaces zero vector with coordinates on another dimension)
 #also checks if character after swap is in the wall, it changes position to spawnpoint!!
+
 func _ready():
-	position = PositionTracking.player_position
+	if not Variables.SwitchRealms:
+		position = PositionTracking.player_position
+		$"../AudioStreamPlayer2D".play()
+	else:
+		position = Variables.SpawnPoint
+		Variables.SwitchRealms = false
 	await get_tree().process_frame 
 	if is_stuck():
 		sprite.animation = "player_death"
@@ -25,6 +30,7 @@ func _input(event: InputEvent) -> void:
 	if not Variables.is_Dead:
 		if event.is_action_pressed("distortion"):
 			PositionTracking.player_position = $".".position
+			$"../AudioStreamPlayer2D".play()
 			get_tree().change_scene_to_file("res://scenes/first_distorted_scene/first_location_distorted.tscn")
 	
 	#sprint
@@ -36,7 +42,10 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("restart"):
 		Variables.is_Dead = false
-		position = SpawnPoint
+		Variables.time = 30
+		Variables.picked_items.clear()
+		Variables.SwitchRealms = true
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	if not Variables.is_Dead:
@@ -77,11 +86,9 @@ func _physics_process(delta):
 		#If direction has a value, it means player pressed move key
 		#so this function moves character in game
 		if direction:
-			sprite.animation = "player_move"
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
-			sprite.animation = "idle_normal"
 			
 			
 		if not is_on_floor():
@@ -91,9 +98,12 @@ func _physics_process(delta):
 				sprite.animation = "player_fall"
 		else:
 			if direction:
-				sprite.animation = "player_move"  
+				sprite.animation = "player_move" 
+				sprite.play("player_move")
+				
 			else:
 				sprite.animation = "idle_normal" 
+				sprite.play("idle_normal")
 		#last function, which glue everything together.
 	else:
 		pass
@@ -112,9 +122,3 @@ func on_jump_buffer_timeout():
 func is_stuck() -> bool:
 	var collision = move_and_collide(Vector2.ZERO)
 	return collision != null
-
-
-func _on_area_2d_normal_area_entered(area: Area2D) -> void:
-	if area.is_in_group("pickable_items"):
-		Variables.is_Pressed = true
-		

@@ -9,23 +9,22 @@ var jump_velocity = -300
 var Jump_Buffer:bool = false
 var Jump_Available : bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var SpawnPoint = Vector2.ZERO
-
 #Instantly replace player with global variable position (defaul zero vector, but after 
 #distortion input it replaces zero vector with coordinates on another dimension)
 #also checks if character after swap is in the wall, it changes position to spawnpoint!!
 
 func _ready():
-	position = PositionTracking.player_position
-	
-
-	
+	if not Variables.SwitchRealms:
+		position = PositionTracking.player_position
+		$"../AudioStreamPlayer2D".play()
+	else:
+		position = Variables.SpawnPoint
+		Variables.SwitchRealms = false
 	await get_tree().process_frame 
-	
 	if is_stuck():
 		sprite.animation = "distorted_death"
 		Variables.is_Dead = true
-		
+
 
 #switches the realms
 func _input(event: InputEvent) -> void:
@@ -43,11 +42,14 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("restart"):
 		Variables.is_Dead = false
-		position = SpawnPoint
+		Variables.time = 30
+		Variables.picked_items.clear()
+		Variables.SwitchRealms = true
+		get_tree().reload_current_scene()
+		
 		
 func _physics_process(delta):
 	if not Variables.is_Dead:
-	
 		#gets direction (either negative either positive number)
 		var direction = Input.get_axis("left","right")
 		#Check if character is on floor, else you can jump
@@ -91,9 +93,11 @@ func _physics_process(delta):
 			pass
 		else:
 			if direction:
-				sprite.animation = "distorted_running"  
+				sprite.animation = "distorted_running"
+				sprite.play("distorted_running")
 			else:
 				sprite.animation = "distorted_idle" 
+				sprite.play("distorted_idle")
 		#last function, which glue everything together.
 		move_and_slide()
 	

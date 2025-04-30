@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmlf4r3a3wop2"]
+
+[ext_resource type="Texture2D" uid="uid://150r3m27qbof" path="res://why not/1149482.jpg" id="1_qxmd2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1y0l8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qxmd2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="funny_joke" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(968, 540.5)
+scale = Vector2(2.425, 2.7125)
+sprite_frames = SubResource("SpriteFrames_1y0l8")

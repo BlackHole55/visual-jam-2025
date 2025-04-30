@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7nk5xog4hydf"]
+
+[ext_resource type="Texture2D" uid="uid://bpuelu8ecvfs8" path="res://why not/pills32x32.png" id="1_2beqe"]
+[ext_resource type="Script" uid="uid://k8e0q5wg8ngo" path="res://scripts/normal_scripts/normal_drug_script/area_2d.gd" id="1_altmv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_altmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2beqe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2beqe"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_altmv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_altmv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2beqe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

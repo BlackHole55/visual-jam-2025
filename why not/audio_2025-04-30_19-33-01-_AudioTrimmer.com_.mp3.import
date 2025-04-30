@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxycopn2rqv4i"
+path="res://.godot/imported/audio_2025-04-30_19-33-01-_AudioTrimmer.com_.mp3-4f38b35ad52a66519b187fbd3f487dda.mp3str"
+
+[deps]
+
+source_file="res://why not/audio_2025-04-30_19-33-01-_AudioTrimmer.com_.mp3"
+dest_files=["res://.godot/imported/audio_2025-04-30_19-33-01-_AudioTrimmer.com_.mp3-4f38b35ad52a66519b187fbd3f487dda.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

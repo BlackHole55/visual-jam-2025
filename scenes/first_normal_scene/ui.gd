@@ -3,7 +3,6 @@ extends CanvasLayer
 @onready var timer_label = $TimerLabel
 @onready var game_timer = $GameTimer
 
-var time: int = 120
 var counting_up := false 
 
 func _ready() -> void:
@@ -15,24 +14,18 @@ func _ready() -> void:
 
 func _on_game_timer_timeout() -> void:
 	if counting_up:
-		time += 1
+		Variables.time += 1
 	else:
-		time -= 1
+		Variables.time -= 1
 	
 	#when timer reaches 0, for death
-	if time < 0:
-		time = 0
+	if Variables.time < 0:
+		Variables.time = 0
 		game_timer.stop() #for now it just stops
-		
-	
+		Variables.is_Dead = true
 	update_timer_label()
 
 func update_timer_label() -> void:
-	var min = time / 60
-	var sec = time % 60
+	var min = Variables.time / 60
+	var sec = Variables.time % 60
 	timer_label.text = "%02d:%02d" % [min, sec]
-
-func _input(event):
-	if event is InputEventKey and event.keycode == KEY_ENTER and event.pressed:
-		time += 30  
-		update_timer_label() 

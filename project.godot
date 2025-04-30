@@ -10,18 +10,26 @@ config_version=5
 
 [application]
 
-config/name="Why-not"
+config/name="Dementia"
 run/main_scene="uid://bh0qov0xo5tfn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/image="uid://b604mton8v1eu"
+config/icon="uid://b604mton8v1eu"
 
 [autoload]
 
 PositionTracking="*res://scripts/global/position_tracking.gd"
 Variables="*res://scripts/global/variables.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/mode=3
+
 [global_group]
 
 tile=""
+pick_drug=""
 
 [input]
 
